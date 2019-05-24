@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Text">
+        <attr name="fontStyle" format="enum">
+            <enum name="roboto_light" value="0"/>
+            <enum name="roboto_regular" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

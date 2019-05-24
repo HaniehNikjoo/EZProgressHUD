@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="166dp"
+        android:layout_height="166dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/dynamic_circle"
+        />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/static_circle"
+        />
+
+    <TextView
+        android:id="@+id/txtWait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="please wait..."
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:textSize="15dp"/>
+
+</RelativeLayout>
