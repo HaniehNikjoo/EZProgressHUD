@@ -3,7 +3,7 @@ package com.example.missnikjoo.hsprogresshud.factory;
 import android.content.Context;
 
 import com.example.missnikjoo.hsprogresshud.HSProgressModel;
-import com.example.missnikjoo.hsprogresshud.hsbaseview.HSBaseView;
+import com.example.missnikjoo.hsprogresshud.interfaces.HSProgress;
 import com.example.missnikjoo.hsprogresshud.pregressestype.HeartBeat;
 import com.example.missnikjoo.hsprogresshud.pregressestype.LineLayer;
 import com.example.missnikjoo.hsprogresshud.pregressestype.LordOfTheRings;
@@ -15,7 +15,7 @@ public class HSFactory {
 
 //    private HSFactory(){}
 
-    public static HSBaseView set(Context context,HSProgressModel progress){
+    public static HSProgress set(Context context, HSProgressModel progress){
 
         switch (progress.animationOption) {
 

@@ -3,10 +3,11 @@ package com.example.missnikjoo.hsprogresshud.pregressestype;
 import android.content.Context;
 
 import com.example.missnikjoo.hsprogresshud.HSProgressModel;
-import com.example.missnikjoo.hsprogresshud.Interfaces;
 import com.example.missnikjoo.hsprogresshud.hsbaseview.HSBaseView;
+import com.example.missnikjoo.hsprogresshud.interfaces.HSProgress;
+import com.example.missnikjoo.hsprogresshud.interfaces.HSProgressAnimation;
 
-public class XYRotation  extends HSBaseView implements Interfaces.HSProgress,Interfaces.HSProgressAnimation {
+public class XYRotation  extends HSBaseView implements HSProgress, HSProgressAnimation {
 
 
     public XYRotation(Context context, HSProgressModel progress) {
