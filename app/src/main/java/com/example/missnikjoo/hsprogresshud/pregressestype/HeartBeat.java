@@ -59,9 +59,9 @@ public class HeartBeat extends HSBaseView implements HSProgress, HSProgressAnima
     @Override
     public void setLayers() {
 
-        set(layerGenerator(circle1,ShapeLayerType.TRACK));
-        set(layerGenerator(circle2,ShapeLayerType.INNER_PILSATE));
         set(layerGenerator(circle3,ShapeLayerType.PULSATE));
+        set(layerGenerator(circle2,ShapeLayerType.INNER_PILSATE));
+        set(layerGenerator(circle1,ShapeLayerType.TRACK));
 
         setAnimation();
     }

@@ -18,7 +18,7 @@ import android.view.ViewTreeObserver;
 
 import com.example.missnikjoo.hsprogresshud.HSProgressModel;
 
-public class HSBaseView extends View {
+public class  HSBaseView extends View {
     private Paint drawPaint;
     private float size;
     private int centerX,centerY;
@@ -34,7 +34,6 @@ public class HSBaseView extends View {
         super(context);
         this.progress = progress;
         initView();
-
     }
 
     public HSBaseView(@NonNull Context context) {
@@ -57,9 +56,7 @@ public class HSBaseView extends View {
         setOnMeasureCallback();
         drawPaint = new Paint();
         drawPaint.setStyle(Paint.Style.STROKE);
-//        drawPaint.setColor(Color.RED);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
-//        drawPaint.setAntiAlias(true);
         switch (type) {
             case TRACK:
 //                drawPaint.setColor(progress.firstLayerStrokeColor);
@@ -67,30 +64,12 @@ public class HSBaseView extends View {
                 drawPaint.setStrokeWidth(10);
                 size = size / 3;
 
-//                canvas.drawRect(30, 30, 200, 200, drawPaint);
-
-//                forceLayout();
-
-//                draw(canvas);
-//                postInvalidate();
-//                oval.getPaint().setColor(progress.firstLayerStrokeColor);
-
                 break;
             case PULSATE:
 //                drawPaint.setColor(progress.secondLayerStrokeColor);
                 drawPaint.setColor(Color.YELLOW);
                 drawPaint.setStrokeWidth(20);
                 size = size;
-
-//                canvas.drawRect(30, 30, 200, 200, drawPaint);
-
-
-//                forceLayout();
-
-//                draw(canvas);
-//                postInvalidate();
-
-//                oval.getPaint().setColor(progress.secondLayerStrokeColor);
 
                 break;
             case INNER_PILSATE:
@@ -100,14 +79,6 @@ public class HSBaseView extends View {
 
                 size = size / 2;
 
-//                canvas.drawRect(30, 30, 200, 200, drawPaint);
-
-
-//                draw(canvas);
-//                postInvalidate();
-
-//                oval.getPaint().setColor(progress.thirdLayerStrokeColor);
-
                 break;
         }
 
@@ -115,17 +86,10 @@ public class HSBaseView extends View {
             @Override
             public void draw(Canvas c, Paint paint) {
 
-//                canvas.translate(App.pxToDp(centerX),App.pxToDp(centerY));
-                canvas.drawCircle(centerX/2, centerY/2, size, drawPaint);
                 forceLayout();
-//                invalidate();
-//                postInvalidate();
             }
         });
 
-        // redraw
-//        invalidate();
-//        requestLayout();
 
         return mShape;
     }
@@ -137,8 +101,6 @@ public class HSBaseView extends View {
             public void onGlobalLayout() {
                 removeOnGlobalLayoutListener(this);
                 size = getMeasuredWidth() / 3;
-//                centerX = getMeasuredWidth() / 2;
-//                centerY = getMeasuredHeight() / 2;
                 centerX = getMeasuredWidth();
                 centerY = getMeasuredHeight();
 
@@ -156,7 +118,6 @@ public class HSBaseView extends View {
     }
 
     private void initView() {
-//        setWillNotDraw(true);
         canvas=new Canvas();
         setOnMeasureCallback();
     }
@@ -174,6 +135,7 @@ public class HSBaseView extends View {
         Paint paint=new Paint();
         paint.setColor(Color.argb(12,0,0,0));
         canvas.drawRect(rect,paint);
-//        canvas.drawCircle(centerX, centerY, size, drawPaint);
+        canvas.drawCircle(centerX/2, centerY/2, size, drawPaint);
     }
+
 }
