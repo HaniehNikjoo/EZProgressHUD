@@ -1,7 +1,5 @@
 package com.example.missnikjoo.hsprogresshud.pregressestype;
 
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -9,6 +7,9 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 
 import com.example.missnikjoo.hsprogresshud.HSProgressModel;
 import com.example.missnikjoo.hsprogresshud.hsbaseview.HSBaseView;
@@ -16,9 +17,6 @@ import com.example.missnikjoo.hsprogresshud.interfaces.HSProgress;
 import com.example.missnikjoo.hsprogresshud.interfaces.HSProgressAnimation;
 
 public class HeartBeat extends HSBaseView implements HSProgress, HSProgressAnimation {
-    ShapeDrawable circle1= new ShapeDrawable();
-    ShapeDrawable circle2= new ShapeDrawable();
-    ShapeDrawable circle3= new ShapeDrawable();
 
     public HeartBeat(Context context, HSProgressModel progress) {
         super(context, progress);
@@ -43,25 +41,24 @@ public class HeartBeat extends HSBaseView implements HSProgress, HSProgressAnima
 
     @Override
     public void setAnimation() {
-//        if (circle1.getAlpha() == 0) {
-//            ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(circle1, PropertyValuesHolder.ofInt("alpha", 255));
-//            animator.setTarget(circle1);
-//            animator.setDuration(2000);
-//            animator.start();
-//        } else {
-        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(circle1, PropertyValuesHolder.ofInt("alpha", 0));
-        animator.setTarget(circle1);
-        animator.setDuration(4000);
-        animator.start();
-//        }
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setDuration(1000);
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setStartOffset(1000);
+        fadeOut.setDuration(1000);
+        fadeOut.setRepeatCount(100);
+        AnimationSet animation = new AnimationSet(true);
+        animation.addAnimation(fadeIn);
+        animation.addAnimation(fadeOut);
+        this.startAnimation(animation);
     }
 
     @Override
     public void setLayers() {
 
-        set(layerGenerator(circle3,ShapeLayerType.PULSATE));
-        set(layerGenerator(circle2,ShapeLayerType.INNER_PILSATE));
-        set(layerGenerator(circle1,ShapeLayerType.TRACK));
+        layerGenerator(new ShapeDrawable(),ShapeLayerType.PULSATE);
+        layerGenerator(new ShapeDrawable(),ShapeLayerType.INNER_PILSATE);
+        layerGenerator(new ShapeDrawable(),ShapeLayerType.TRACK);
 
         setAnimation();
     }

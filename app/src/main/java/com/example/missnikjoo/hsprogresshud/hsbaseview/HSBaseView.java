@@ -16,14 +16,23 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import com.example.missnikjoo.hsprogresshud.App;
 import com.example.missnikjoo.hsprogresshud.HSProgressModel;
+import com.example.missnikjoo.hsprogresshud.R;
 
 public class  HSBaseView extends View {
+    protected Paint circle1;
+    protected Paint circle2;
+    protected Paint circle3;
     private Paint drawPaint;
-    private float size;
+    private float size1;
+    private float size2;
+    private float size3;
     private int centerX,centerY;
     Canvas canvas;
     Rect rect;
+    ShapeLayerType type;
+
     public enum ShapeLayerType {
         TRACK, PULSATE, INNER_PILSATE
     }
@@ -53,6 +62,7 @@ public class  HSBaseView extends View {
 
     /// this method set the circles position, path, fillColor and.........
     public Drawable layerGenerator(ShapeDrawable mShape, ShapeLayerType type) {
+        this. type = type;
         setOnMeasureCallback();
         drawPaint = new Paint();
         drawPaint.setStyle(Paint.Style.STROKE);
@@ -60,37 +70,32 @@ public class  HSBaseView extends View {
         switch (type) {
             case TRACK:
 //                drawPaint.setColor(progress.firstLayerStrokeColor);
-                drawPaint.setColor(Color.RED);
-                drawPaint.setStrokeWidth(10);
-                size = size / 3;
-
+                drawPaint.setColor(App.mContext.getResources().getColor(R.color.light_sky_blue));
+                drawPaint.setStrokeWidth(15);
+//                size = size / 3;
+                circle1 = drawPaint;
                 break;
             case PULSATE:
 //                drawPaint.setColor(progress.secondLayerStrokeColor);
-                drawPaint.setColor(Color.YELLOW);
-                drawPaint.setStrokeWidth(20);
-                size = size;
-
+                drawPaint.setColor(App.mContext.getResources().getColor(R.color.colorPrimaryDark));
+                drawPaint.setStrokeWidth(15);
+                circle2 = drawPaint;
                 break;
             case INNER_PILSATE:
 //                drawPaint.setColor(progress.thirdLayerStrokeColor);
-                drawPaint.setColor(Color.GREEN);
-                drawPaint.setStrokeWidth(30);
-
-                size = size / 2;
-
+                drawPaint.setColor(App.mContext.getResources().getColor(R.color.navy));
+                drawPaint.setStrokeWidth(15);
+//                size = size / 2;
+                circle3 = drawPaint;
                 break;
         }
 
         mShape = new ShapeDrawable(new Shape() {
             @Override
             public void draw(Canvas c, Paint paint) {
-
                 forceLayout();
             }
         });
-
-
         return mShape;
     }
 
@@ -100,7 +105,10 @@ public class  HSBaseView extends View {
             @Override
             public void onGlobalLayout() {
                 removeOnGlobalLayoutListener(this);
-                size = getMeasuredWidth() / 3;
+                size1 = (float) (getMeasuredWidth() / (3.05));
+                size2 = (float) (getMeasuredWidth() / (3.15));
+                size3 = (float) (getMeasuredWidth() / (3.30));
+
                 centerX = getMeasuredWidth();
                 centerY = getMeasuredHeight();
 
@@ -132,10 +140,19 @@ public class  HSBaseView extends View {
         rect.bottom=50;
 
         this.canvas = canvas;
+
+        Paint newPaint = new Paint();
+        newPaint.setColor(App.mContext.getResources().getColor(R.color.white));
+        newPaint.setTextSize(60);
+        canvas.drawText("Please wait...", (float) (centerX/2.9), centerY/2, newPaint);
+
+
         Paint paint=new Paint();
         paint.setColor(Color.argb(12,0,0,0));
-        canvas.drawRect(rect,paint);
-        canvas.drawCircle(centerX/2, centerY/2, size, drawPaint);
+        canvas.drawCircle(centerX/2, centerY/2, size1, circle1);
+        canvas.drawCircle(centerX/2, centerY/2, size2, circle2);
+        canvas.drawCircle(centerX/2, centerY/2, size3, circle3);
+
     }
 
 }

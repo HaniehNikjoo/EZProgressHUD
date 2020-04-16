@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.missnikjoo.hsprogresshud.factory.HSFactory;
+import com.example.missnikjoo.hsprogresshud.hsbaseview.HSBaseView;
 import com.example.missnikjoo.hsprogresshud.interfaces.HSProgress;
+import com.example.missnikjoo.hsprogresshud.pregressestype.HeartBeat;
 
 public class MainActivity extends AppCompatActivity {
 
